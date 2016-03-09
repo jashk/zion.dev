@@ -316,9 +316,9 @@ xdebug:
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
-        xdebug.var_display_max_depth: '10'
-        xdebug.max_nesting_level: '10'
-        xdebug.var_display_max_children: '10'
+        xdebug.var_display_max_depth: '-1'
+        xdebug.max_nesting_level: '-1'
+        xdebug.var_display_max_children: '-1'
 blackfire:
     install: '0'
     settings:

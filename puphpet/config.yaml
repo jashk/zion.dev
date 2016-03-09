@@ -220,6 +220,7 @@ apache:
         - proxy_fcgi
         - rewrite
         - ssl
+        - headers
     vhosts:
         av_fmz9xu26oca8:
             servername: basecentral.dev
@@ -277,7 +278,11 @@ php:
             - curl
             - common
             - mysqlnd
+            # - dev
+            - soap
         pear: {  }
+        # pear:
+        #     - SOAP
         pecl: {  }
     ini:
         display_errors: 'On'

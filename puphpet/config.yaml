@@ -3,8 +3,8 @@ vagrantfile:
     vm:
         provider:
             local:
-                box: puphpet/centos65-x64
-                box_url: puphpet/centos65-x64
+                box: puphpet/debian75-x64
+                box_url: puphpet/debian75-x64
                 box_version: '0'
                 chosen_virtualizer: virtualbox
                 virtualizers:

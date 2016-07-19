@@ -3,8 +3,8 @@ vagrantfile:
     vm:
         provider:
             local:
-                box: puphpet/debian75-x64
-                box_url: puphpet/debian75-x64
+                box: puphpet/centos65-x64
+                box_url: puphpet/centos65-x64
                 box_version: '0'
                 chosen_virtualizer: virtualbox
                 virtualizers:
@@ -19,24 +19,24 @@ vagrantfile:
                         check_guest_tools: 0
                         update_guest_tools: 0
                 machines:
-                    vflm_lvo7lmkxqw4a:
+                    vflm_fslvjbibytv6:
                         id: basecentral
+                        hostname: basecentral.local
                         network:
                             private_network: 192.168.56.101
                             forwarded_port:
-                                vflmnfp_ypao0pf05vfa:
+                                vflmnfp_mqrpxio7xkqi:
                                     host: '6728'
                                     guest: '22'
-                                vflmnfp_1kabcw8igvdj:
+                                vflmnfp_ds6vaxcghgwl:
                                     host: '8080'
                                     guest: '80'
-                                vflmnfp_cm99cwp1ztgd:
+                                vflmnfp_3ubc9xd2rztx:
                                     host: '8181'
                                     guest: '443'
-                                vflmnfp_cm99cwp1ztgx:
+                                vflmnfp_h1zg7425pzgd:
                                     host: '9001'
                                     guest: '9000'
-                        hostname: basecentral.local
                         memory: '512'
                         cpus: '1'
         provision:
@@ -47,7 +47,7 @@ vagrantfile:
                     - '--verbose'
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
-            vflsf_rnpj2oy6wuut:
+            vflsf_35q8r17ocdxl:
                 source: ./web
                 target: /var/www/html
                 sync_type: default
@@ -69,7 +69,7 @@ vagrantfile:
                     auto: 'true'
                 owner: www-data
                 group: www-data
-            vflsf_48l5bpdh5p7k:
+            vflsf_yu5x26ss57ry:
                 source: ./conf
                 target: /basecentral/apache/conf
                 sync_type: default
@@ -113,7 +113,6 @@ vagrantfile:
         https: ''
         ftp: ''
         no_proxy: ''
-        enabled: ''
 server:
     install: '1'
     packages:
@@ -135,10 +134,11 @@ locale:
 firewall:
     install: '1'
     rules:
-        fr_s3q5sampyq99:
+        fr_p38bmvl7v48k:
             port:
                 - '80'
                 - '443'
+                - '9001'
             priority: '100'
             proto: tcp
             action: accept
@@ -157,7 +157,7 @@ nginx:
         names_hash_bucket_size: 128
     upstreams: {  }
     vhosts:
-        nxv_onl93zqsvin9:
+        nxv_aemce8drtx9g:
             server_name: awesome.dev
             server_aliases:
                 - www.awesome.dev
@@ -177,10 +177,8 @@ nginx:
             rewrite_to_https: '1'
             spdy: '1'
             locations:
-                nxvl_jsdfzab8vuz3:
+                nxvl_q0sxoj678zy1:
                     location: /
-                    autoindex: 'off'
-                    internal: 'false'
                     try_files:
                         - $uri
                         - $uri/
@@ -190,10 +188,8 @@ nginx:
                     fastcgi_split_path: ''
                     proxy: ''
                     proxy_redirect: ''
-                nxvl_o88cyt9go9xx:
+                nxvl_yiaxk49b91h6:
                     location: '~ \.php$'
-                    autoindex: 'off'
-                    internal: 'false'
                     try_files:
                         - $uri
                         - $uri/
@@ -222,10 +218,9 @@ apache:
     modules:
         - proxy_fcgi
         - rewrite
-        - ssl
         - headers
     vhosts:
-        av_fmz9xu26oca8:
+        av_of5h25qftyg8:
             servername: basecentral.dev
             serveraliases:
                 - www.basecentral.dev
@@ -244,7 +239,7 @@ apache:
             ssl_protocol: ''
             ssl_cipher: ''
             directories:
-                avd_yogtbq5ccia5:
+                avd_4mg8kni37yub:
                     path: /var/www/html
                     options:
                         - Indexes
@@ -256,16 +251,21 @@ apache:
                         - 'all granted'
                     custom_fragment: ''
                     files_match:
-                        avdfm_5bs858osjeoq:
+                        avdfm_5a5967mfsxss:
                             path: \.php$
                             sethandler: 'proxy:fcgi://127.0.0.1:9000'
                             custom_fragment: ''
                             provider: filesmatch
                     provider: directory
+letsencrypt:
+    install: '1'
+    settings:
+        email: fidel.aquino@consucorp.com.mx
+    domains: {  }
 php:
     install: '1'
     settings:
-        version: '55'
+        version: '56'
     modules:
         php:
             - cli
@@ -281,11 +281,8 @@ php:
             - curl
             - common
             - mysqlnd
-            # - dev
             - soap
         pear: {  }
-        # pear:
-        #     - SOAP
         pecl: {  }
     ini:
         display_errors: 'On'
@@ -306,7 +303,7 @@ php:
     fpm_ini:
         error_log: /var/www/html/error_log/php-fpm.log
     fpm_pools:
-        phpfp_o2ae14hknebm:
+        phpfp_rwmulwpx43eh:
             ini:
                 prefix: www
                 listen: '127.0.0.1:9000'
@@ -348,18 +345,10 @@ wpcli:
     version: v0.21.1
 drush:
     install: '0'
-    version: 6.3.0
+    version: 8.0.5
 ruby:
     install: '1'
-    versions:
-        rv_p3ak06bwqo6m:
-            default: '1'
-            bundler: '1'
-            version: 1.9.3
-            gems:
-                - deep_merge
-                - activesupport
-                - vine
+    versions: {  }
 python:
     install: '1'
     packages: {  }
@@ -392,15 +381,15 @@ mariadb:
         override_options: {  }
     adminer: 0
     users:
-        mariadbnu_ci2hbm2ovbvc:
+        mariadbnu_apzu620o2db9:
             name: dbuser
             password: '123'
     databases:
-        mariadbnd_cwrw310ec1en:
+        mariadbnd_4t6ophfk8r53:
             name: dbname
             sql: ''
     grants:
-        mariadbng_vixteov47tf3:
+        mariadbng_ft4ftlztz2yu:
             user: dbuser
             table: '*.*'
             privileges:
@@ -408,20 +397,20 @@ mariadb:
 mysql:
     install: '0'
     settings:
-        version: '5.5'
+        version: '5.6'
         root_password: '123'
         override_options: {  }
     adminer: 0
     users:
-        mysqlnu_h215b80zl0cp:
+        mysqlnu_5i28dduz8hj1:
             name: dbuser
             password: '123'
     databases:
-        mysqlnd_1cfj1bxzn2kv:
+        mysqlnd_gzxwawoz0wfn:
             name: dbname
             sql: ''
     grants:
-        mysqlng_9c46v35m90sm:
+        mysqlng_7wobpjs48oxn:
             user: dbuser
             table: '*.*'
             privileges:
@@ -455,7 +444,7 @@ sqlite:
     adminer: 0
     databases: {  }
 mailhog:
-    install: '0'
+    install: '1'
     settings:
         smtp_ip: 0.0.0.0
         smtp_port: 1025
@@ -483,10 +472,10 @@ rabbitmq:
 elastic_search:
     install: '0'
     settings:
-        version: 2.1.0
+        version: 2.3.1
         java_install: true
     instances:
-        esi_xyw80x4j9s4j:
+        esi_m2yc13bgnw5o:
             name: es-01
 solr:
     install: '0'

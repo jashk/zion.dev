@@ -34,9 +34,9 @@ vagrantfile:
                                 vflmnfp_3ubc9xd2rztx:
                                     host: '8181'
                                     guest: '443'
-                                vflmnfp_h1zg7425pzgd:
-                                    host: '9001'
-                                    guest: '9000'
+                                # vflmnfp_h1zg7425pzgd:
+                                #     host: '9001'
+                                #     guest: '9001'
                         memory: '512'
                         cpus: '1'
         provision:
@@ -320,10 +320,13 @@ xdebug:
         xdebug.remote_connect_back: '1'
         xdebug.remote_enable: '1'
         xdebug.remote_handler: dbgp
-        xdebug.remote_port: '9000'
+        xdebug.remote_port: '9001'
         xdebug.var_display_max_depth: '-1'
         xdebug.max_nesting_level: '-1'
         xdebug.var_display_max_children: '-1'
+        xdebug.remote_mode: req
+        xdebug.idekey: 'vagrant'
+        xdebug.remote_log: '/basecentral/apache/web/error_log/xdebug.log'
 blackfire:
     install: '0'
     settings:

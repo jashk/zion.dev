@@ -373,19 +373,19 @@ mariadb:
             privileges:
                 - ALL
 mysql:
-    install: '0'
+    install: '1'
     settings:
         version: '5.6'
         root_password: '123'
         override_options: {  }
-    adminer: 0
+    adminer: 1
     users:
         mysqlnu_5i28dduz8hj1:
             name: dbuser
             password: '123'
     databases:
         mysqlnd_gzxwawoz0wfn:
-            name: dbname
+            name: ziondb
             sql: ''
     grants:
         mysqlng_7wobpjs48oxn:

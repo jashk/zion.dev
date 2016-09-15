@@ -20,10 +20,10 @@ vagrantfile:
                         update_guest_tools: 0
                 machines:
                     vflm_fslvjbibytv6:
-                        id: basecentral
-                        hostname: basecentral.local
+                        id: zion
+                        hostname: zion.local
                         network:
-                            private_network: 192.168.56.101
+                            private_network: 192.168.56.103
                             forwarded_port:
                                 vflmnfp_mqrpxio7xkqi:
                                     host: '6728'
@@ -34,9 +34,6 @@ vagrantfile:
                                 vflmnfp_3ubc9xd2rztx:
                                     host: '8181'
                                     guest: '443'
-                                # vflmnfp_h1zg7425pzgd:
-                                #     host: '9001'
-                                #     guest: '9001'
                         memory: '512'
                         cpus: '1'
         provision:
@@ -48,30 +45,8 @@ vagrantfile:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
             vflsf_35q8r17ocdxl:
-                source: ./web
+                source: ./www
                 target: /var/www/html
-                sync_type: default
-                smb:
-                    smb_host: ''
-                    smb_username: ''
-                    smb_password: ''
-                    mount_options:
-                        dir_mode: '0775'
-                        file_mode: '0664'
-                rsync:
-                    args:
-                        - '--verbose'
-                        - '--archive'
-                        - '-z'
-                    exclude:
-                        - .vagrant/
-                        - .git/
-                    auto: 'true'
-                owner: www-data
-                group: www-data
-            vflsf_yu5x26ss57ry:
-                source: ./conf
-                target: /basecentral/apache/conf
                 sync_type: default
                 smb:
                     smb_host: ''
@@ -221,9 +196,9 @@ apache:
         - headers
     vhosts:
         av_of5h25qftyg8:
-            servername: basecentral.dev
+            servername: zion.dev
             serveraliases:
-                - www.basecentral.dev
+                - www.zion.dev
             docroot: /var/www/html/
             port: '443'
             setenv:
@@ -260,7 +235,7 @@ apache:
 letsencrypt:
     install: '1'
     settings:
-        email: fidel.aquino@consucorp.com.mx
+        email: fidel.aquino.dev@gmail.com
     domains: {  }
 php:
     install: '1'
@@ -326,7 +301,7 @@ xdebug:
         xdebug.var_display_max_children: '-1'
         xdebug.remote_mode: req
         xdebug.idekey: 'vagrant'
-        xdebug.remote_log: '/basecentral/apache/web/error_log/xdebug.log'
+        xdebug.remote_log: '/var/www/html/error_log/xdebug.log'
 blackfire:
     install: '0'
     settings:

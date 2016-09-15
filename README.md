@@ -1,8 +1,8 @@
-basecentral.local
+zion.local
 ===============
 
 
-Entorno de desarrollo PHP 5.5 con apache 2.4
+Entorno de desarrollo PHP 5.6 con apache 2.4
 
 
 <h2>Run</h2>
@@ -13,16 +13,16 @@ Entorno de desarrollo PHP 5.5 con apache 2.4
     <a href="http://docs.vagrantup.com/v2/installation/" /target="_blank">Vagrant docs</a>
   </li>
   <li>Clonar este repositorio y ejcutar $ vagrant up</li>
-  <li>Los directorios conf y web representan /basecentral/apache/conf y /basecentral/apache/web/ respectivamente</li>
+  <li>Los directorios www representan /var/www/html</li>
   <li>Accesar a localhost:8080 (8181 para https)</li>
   <li>$ vagrant ssh</li>
 </ul>
 
-<h2>servername: basecentral.dev private_network: 192.168.56.101</h2>
+<h2>servername: zion.dev private_network: 192.168.56.101</h2>
 ```bash
 #/etc/hosts
-192.168.56.101 www.basecentral.dev
-192.168.56.101 basecentral.dev
+192.168.56.103 www.zion.dev
+192.168.56.103 zion.dev
 ```
 
 <h2>Módulos de apache</h2>
